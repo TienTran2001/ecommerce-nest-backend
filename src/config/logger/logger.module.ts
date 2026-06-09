@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { IncomingMessage } from 'http';
+import { randomUUID } from 'node:crypto';
+import { IncomingMessage } from 'node:http';
 import { LoggerModule } from 'nestjs-pino';
+import { CORRELATION_ID_HEADER } from 'src/constants/correlation-id';
 
 @Module({
   imports: [
@@ -23,7 +25,13 @@ import { LoggerModule } from 'nestjs-pino';
                   },
                 }
               : undefined,
-            // Todo add reqId
+            genReqId: (req, res) => {
+              const existing = req.headers[CORRELATION_ID_HEADER];
+              const id = existing ?? randomUUID();
+              req.headers[CORRELATION_ID_HEADER] = id;
+              res.setHeader(CORRELATION_ID_HEADER, id);
+              return id;
+            },
             redact: {
               paths: [
                 'req.header.authorization',
