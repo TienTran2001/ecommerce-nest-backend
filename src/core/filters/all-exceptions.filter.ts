@@ -11,7 +11,7 @@ import {
   buildApiErrorPayload,
   extractFromHttpExceptionBody,
   payloadFromUnknownException,
-} from 'src/helpers/api-error-response';
+} from 'src/shared/helpers/api-error-response';
 
 @Catch()
 @Injectable()

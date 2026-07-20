@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'node:crypto';
 import { IncomingMessage } from 'node:http';
 import { LoggerModule } from 'nestjs-pino';
-import { CORRELATION_ID_HEADER } from 'src/constants/correlation-id';
+import { CORRELATION_ID_HEADER } from 'src/shared/constants/correlation-id';
 
 @Module({
   imports: [
     LoggerModule.forRootAsync({
-      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         const isDev = config.get<string>('NODE_ENV') === 'development';
