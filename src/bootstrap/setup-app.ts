@@ -2,12 +2,12 @@ import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import cookieParser from 'cookie-parser';
-import { PinoLogger } from 'nestjs-pino';
+import { Logger } from 'nestjs-pino';
 import { APP_CONFIG } from 'src/config/app/app.config';
 
 export function setupApp(
   app: NestExpressApplication,
-  logger: PinoLogger,
+  logger: Logger,
   config: ConfigService,
 ) {
   app.use(cookieParser());
