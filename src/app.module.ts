@@ -12,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './config/database/typeorm-config.service';
 import { AuthModule } from './app/auth/auth.module';
 import { UserModule } from './app/user/user.module';
+import { AddressModule } from './app/address/address.module';
 
 const envFile =
   process.env.NODE_ENV === 'production'
@@ -34,6 +35,7 @@ const envFile =
     }),
     AuthModule,
     UserModule,
+    AddressModule,
   ],
   providers: [
     {
