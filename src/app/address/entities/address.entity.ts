@@ -43,7 +43,7 @@ export class Address extends BaseUuidEntity {
   deletedAt: Date | null;
 
    // Relations
-    @ManyToOne(() => User, { onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'user_id' })
-    user: User;
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 }
