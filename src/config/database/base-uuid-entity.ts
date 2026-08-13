@@ -1,1 +1,27 @@
-export abstract class BaseUuidEntity {}
+import {
+  BeforeInsert,
+  CreateDateColumn,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { v7 as uuidv7 } from 'uuid';
+
+export abstract class BaseUuidEntity {
+  @PrimaryColumn({
+    type: 'uuid',
+  })
+  id: string;
+
+  @BeforeInsert()
+  generateId() {
+    if (!this.id) {
+      this.id = uuidv7();
+    }
+  }
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+}
