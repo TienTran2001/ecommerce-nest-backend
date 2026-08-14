@@ -1,4 +1,4 @@
-import { ColumnOptions, ValueTransformer } from "typeorm";
+import { ColumnOptions, ValueTransformer } from 'typeorm';
 
 export const decimalColumnTransformer: ValueTransformer = {
   to: (value?: number | null) => value,
@@ -8,10 +8,7 @@ export const decimalColumnTransformer: ValueTransformer = {
       return null;
     }
 
-    const num =
-      typeof value === 'number'
-        ? value
-        : Number(String(value));
+    const num = typeof value === 'number' ? value : Number(String(value));
 
     return Number.isFinite(num) ? num : 0;
   },

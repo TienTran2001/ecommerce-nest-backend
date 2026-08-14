@@ -1,6 +1,13 @@
-import { User } from "src/app/user/entities/user.entity";
-import { BaseUuidEntity } from "src/config/database/base-uuid-entity";
-import { Column, DeleteDateColumn, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { User } from 'src/app/user/entities/user.entity';
+import { BaseUuidEntity } from 'src/config/database/base-uuid-entity';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 
 @Entity()
 @Index('user_default_address', ['userId'], {
@@ -42,7 +49,7 @@ export class Address extends BaseUuidEntity {
   @DeleteDateColumn({ type: 'timestamptz', nullable: true })
   deletedAt: Date | null;
 
-   // Relations
+  // Relations
   @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: User;

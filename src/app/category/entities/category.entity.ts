@@ -1,5 +1,13 @@
-import { BaseUuidEntity } from "src/config/database/base-uuid-entity";
-import { Column, DeleteDateColumn, Entity, Index, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { BaseUuidEntity } from 'src/config/database/base-uuid-entity';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
 export class Category extends BaseUuidEntity {
@@ -27,14 +35,14 @@ export class Category extends BaseUuidEntity {
 
   @DeleteDateColumn({ type: 'timestamptz', nullable: true })
   deletedAt: Date | null;
-  
+
   // Relations
-  @ManyToOne(() => Category, (category) => category.children, { nullable: true })
+  @ManyToOne(() => Category, (category) => category.children, {
+    nullable: true,
+  })
   @JoinColumn({ name: 'parent_id' })
-  parent: Category | null
+  parent: Category | null;
 
   @OneToMany(() => Category, (category) => category.parent)
   children: Category[];
-
-
 }

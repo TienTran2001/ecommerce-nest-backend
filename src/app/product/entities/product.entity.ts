@@ -1,11 +1,21 @@
-import { Category } from "src/app/category/entities/category.entity";
-import { BaseUuidEntity } from "src/config/database/base-uuid-entity";
-import { Column, DeleteDateColumn, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
-import { decimalColumn, nullableDecimalColumn } from "src/shared/utils/decimal-column.transformer";
+import { Category } from 'src/app/category/entities/category.entity';
+import { BaseUuidEntity } from 'src/config/database/base-uuid-entity';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
+import {
+  decimalColumn,
+  nullableDecimalColumn,
+} from 'src/shared/utils/decimal-column.transformer';
 
 @Entity()
-@Index('idx_product_featured', ['isFeatured'], { 
-  where: '"is_featured" = true AND "is_active" = true AND "deleted_at" IS NULL' 
+@Index('idx_product_featured', ['isFeatured'], {
+  where: '"is_featured" = true AND "is_active" = true AND "deleted_at" IS NULL',
 })
 export class Product extends BaseUuidEntity {
   @Index()
@@ -56,10 +66,9 @@ export class Product extends BaseUuidEntity {
 
   @DeleteDateColumn({ type: 'timestamptz', nullable: true })
   deletedAt: Date | null;
-  
+
   // Relations
   @ManyToOne(() => Category, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'category_id' })
   category: Category;
-
 }
