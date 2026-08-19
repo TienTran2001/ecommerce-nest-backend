@@ -20,6 +20,11 @@ export const envSchema = z.object({
   // Throttler
   THROTTLER_TTL_MS: z.coerce.number().default(1000),
   THROTTLER_LIMIT: z.coerce.number().default(60),
+
+  // Email (SMTP)
+  SMTP_USER: z.email(),
+  SMTP_PASS: z.string().min(1),
+  SMTP_FROM: z.email(),
 });
 
 export type Env = z.infer<typeof envSchema>;
