@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'node:crypto';
 import { IncomingMessage } from 'node:http';
 import { LoggerModule } from 'nestjs-pino';
 import { CORRELATION_ID_HEADER } from 'src/shared/constants/correlation-id';
 
+@Global()
 @Module({
   imports: [
     LoggerModule.forRootAsync({
